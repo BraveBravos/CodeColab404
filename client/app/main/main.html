@@ -1,111 +1,19 @@
 <link rel="stylesheet" href="../../styles/styles.css">
 
-<p>
-  Sorry, our server is down, but we're working on getting it back up and running ASAP.  If you want us to notify you when it's back up, please enter your email address and we'll let you know.
-</p>
+<div ng-controller='codeCtrl'>
 
-<p>
-  <input placeholder='Enter your email here.' ng-model='email'></input>
-  <button ng-click='submitEmail(email)'>Submit</button>
-  <div ng-model='statusText'></div>
-</p>
+  <p>
+    Sorry, our server is down, but we're working on getting it back up and running ASAP.  If you want us to notify you when it's back up, please enter your email address and we'll let you know.
+  </p>
 
+  <p>
+    <input placeholder='Enter your email here.' ng-model='email'></input>
+    <button ng-click='submitEmail(email)'>Submit</button><br>
+  </p>
 
+  <p ng-bind='statusText'></p>
 
-
-
-
-
-
-
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-    <div class="container topnav">
-        <!-- So brand and toggle are grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-          <!-- the repo dropdown on left of navbar -->
-          <div class='navbar-left'>
-
-            <select ng-show= "reposLoaded" ng-options = "repo.name for repo in repos track by repo.id" ng-model = "selectRepo" class='navbar-text selectpicker' ng-change="saveRepo(selectRepo)">
-            </select>
-
-          </div>
-
-          <!-- the commit text input box/button -->
-
-          <form class="navbar-form navbar-left" role="search">
-            <button class="btn btn-default" ng-show='fileLoaded' ng-click="commitModal()">
-              Make Commit
-            </button>
-          </form>
-
-
-          <!-- the merge / heroku / logout on right in navbar -->
-
-          <ul class="nav navbar-nav navbar-right">
-            <li ng-show = "showMergeButton">
-              <a ng-click="mergeModal()">
-                <i class="mergeButton fa fa-code-fork fa-2x"></i>
-                Merge Branch
-              </a>
-            </li>
-
-            <li>
-              <a href="/auth/heroku" ng-show="selected">
-              <img class='herokulogin' src="../../styles/img/herokuicon.png" alt="Deploy">Deploy
-             </a>
-            </li>
-             <li class='logout'>
-                <a href="/logout">
-                <span class="logoutIMG fa fa-sign-out fa-2x"></span>Logout</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
-<div class = 'CodeMirror-fullscreen'>
-  <div id="files" style='height:50%; overflow:auto;'>
-    <ng-include src="fileStruct.url"></ng-include>
-  </div>
-
-  <ng-include src="videochat.url"></ng-include>
-
-  <!-- #area : where the text editor will go -->
-  <div id="area">
-
-    <!-- spinner while file is loading into editor-->
-    <div class='spinner' ng-show='textSpinner'>
-      <i class="fa fa-spinner fa-pulse fa-5x"></i>
-    </div>
-
-  </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,3 +1,7 @@
+if (!process.env.CLIENT_ID) {
+  var keys = require('../keys.js');
+  }
+
 
 var express = require('express');
     app = express(),
@@ -12,20 +16,21 @@ require('./config/express')(app);
 // require('./routes')(app);
 // require('./models/browserChannel')(app);
 
-app.post('/api/submitEmails', function(req, res) {
+app.post('/api/submitEmail', function(req, res) {
 	var email = req.body.email
 	var emailDB = db.get('Emails')
 	emailDB.find({email: email}, function(err, result) {
-		if(!result) {
+		console.log(result)
+		if(!result.length) {
 			var insertData = [{email: email}],
           promise = emailDB.insert(insertData);
 
       promise.success(function(doc) {
-        done(null, doc[0]._id);
+        // done(null, doc[0]._id);
         res.status(200).send({message: 'User added to database.'})
       })
 		} else {
-			done(null, result[0]._id)
+			// done(null, result[0]._id)
       res.status(200).send({message: 'User already in database.'})
 		}
 	})
